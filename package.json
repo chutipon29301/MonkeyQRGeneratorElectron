@@ -1,5 +1,28 @@
 {
-  "name"    : "MonkeyQRGenerator",
-  "version" : "0.1.0",
-  "main"    : "main.js"
+    "name": "monkeyqrgenerator",
+    "version": "0.1.0",
+    "main": "main.js",
+    "scripts": {
+        "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+        "start": "npm run build && electron ."
+    },
+    "dependencies": {
+        "express": "^4.15.3"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-preset-es2015": "^6.24.1",
+        "rimraf": "^2.6.1"
+    },
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/chutipon29301/MonkeyQRGeneratorElectron.git"
+    },
+    "author": "Chutipon",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/chutipon29301/MonkeyQRGeneratorElectron/issues"
+    },
+    "homepage": "https://github.com/chutipon29301/MonkeyQRGeneratorElectron#readme"
 }
