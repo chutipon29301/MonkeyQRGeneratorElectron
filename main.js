@@ -1,12 +1,21 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
+var express = require('express');
+var chalk = require('chalk');
+var config = require('./config');
+
+var appExpress = express();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+appExpress.listen(config.runPort, function(){
+    console.log(chalk.cyan('Listening to port ' + config.runPort));
+});
 
 function createWindow() {
+    require('./courseDecoder.js')(appExpress);
     // Create the browser window.
     win = new BrowserWindow({width: 800, height: 600});
 
