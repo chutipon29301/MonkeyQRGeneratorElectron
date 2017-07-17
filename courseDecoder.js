@@ -178,4 +178,21 @@ module.exports = function (app) {
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
             + courseName.subscript + courseName.subscriptNo + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
     });
+
+    app.post('/keyStudentPath', function (req, res) {
+        global.cyan('[POST Request] "/keyStudentPath"\tbody => ');
+        global.log(req.body);
+
+        if (req.body.courseName === null) return res.status(400).send('Bad Request');
+
+        var courseName = decodeCourseName(req.body.courseName);
+
+        if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
+
+        res.status(200).send('//monkeycloud/' + config.subjectFullName[courseName.subject]
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + courseName.subscript + courseName.subscriptNo + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+    });
 }
