@@ -3,7 +3,5 @@ function getOption() {
 }
 
 function getSubject() {
-    $.get('http://localhost:4000/availableSubject',(data)=>{
-        console.log(data);
-    })
+    
 }

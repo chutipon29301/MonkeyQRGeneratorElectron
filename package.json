@@ -8,7 +8,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "chalk": "^2.0.1",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "fs-extra": "^4.0.0"
   },
   "description": "QR code generator for monkey hybrid worksheet",
   "repository": {

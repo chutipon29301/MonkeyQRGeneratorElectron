@@ -15,6 +15,7 @@ appExpress.listen(config.runPort, function () {
 });
 
 function createWindow() {
+    require('./fileWriter.js');
     require('./courseDecoder.js')(appExpress);
     require('./rest.js')(appExpress);
     // Create the browser window.
