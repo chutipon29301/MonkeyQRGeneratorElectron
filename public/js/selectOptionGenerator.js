@@ -54,7 +54,7 @@ function getSetNo() {
 
 function getSubscript() {
     var subscriptOption = document.getElementById('subscript');
-    subscriptOption.innerHTML = '<option value="none">-</option>';
+    subscriptOption.innerHTML = '<option value="none">None</option>';
     config.availableSubscriptList.forEach(function (element) {
         subscriptOption.innerHTML += '<option value="' + element + '">' + element + '</option>';
     }, this);
@@ -62,7 +62,7 @@ function getSubscript() {
 
 function getSubscriptNo() {
     var subscriptNoOption = document.getElementById('subscriptno');
-    subscriptNoOption.innerHTML = '<option value="none">-</option>';
+    subscriptNoOption.innerHTML = '<option value="none">None</option>';
     for (let i = 0; i < 99; i++) {
         var temp = String(i + 1);
         if (temp.length === 1) temp = '0' + temp;
