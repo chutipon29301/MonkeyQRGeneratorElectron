@@ -16,6 +16,7 @@ appExpress.listen(config.runPort, function () {
 
 function createWindow() {
     require('./courseDecoder.js')(appExpress);
+    require('./rest.js')(appExpress);
     // Create the browser window.
     win = new BrowserWindow({ width: 800, height: 600 });
 

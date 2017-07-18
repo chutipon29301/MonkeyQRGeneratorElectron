@@ -84,7 +84,6 @@ module.exports = function (app) {
             errorLog(error);
         }
 
-
         //Get set from courseName
         try {
             courseNameComponent.set = courseName.substring(indexOfHyphen + 1, indexOfFirstInt - 1);
@@ -132,7 +131,7 @@ module.exports = function (app) {
             if (courseName.substring(indexOfFirstInt + 3, indexOfFirstInt + 5) === undefined) throw new Error(chalk.red('Cannot subscriptNo from courseName, index out od range'));
             if (isNaN(courseNameComponent.subscriptNo)) throw new Error(chalk.red('Invalid subscriptNo, cannot parse subscriptNo into int'));
             courseNameComponent.subscriptNo = String(courseNameComponent.subscriptNo);
-            if(courseNameComponent.subscriptNo.length === 1){
+            if (courseNameComponent.subscriptNo.length === 1) {
                 courseNameComponent.subscriptNo = "0" + courseNameComponent.subscriptNo;
             }
         } catch (error) {
