@@ -16,6 +16,7 @@
     <link href="public/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
     <script src="public/js/configPath.js" type="text/javascript"></script>
     <script src="public/js/selectOptionGenerator.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
     <!-- Insert this line after script imports -->
 
     <script>
@@ -26,11 +27,19 @@
 <body onload="getOption()">
     <h1>Monkey QR-Code Generator</h1>
     <div class="col-2">
-        <select class="custom-select">
-            <option selected>Subject</option>
-            <option value="1">M</option>
-            <option value="2">P</option>
-            <option value="3">C</option>
+        <select class="custom-select" id="subject">
+        </select>
+    </div>
+    <div class="col-2">
+        <select class="custom-select" id="level">
+        </select>
+    </div>
+    <div class="col-2">
+        <select class="custom-select" id="set">
+        </select>
+    </div>
+    <div class="col-2">
+        <select class="custom-select" id="subset">
         </select>
     </div>
 </body>

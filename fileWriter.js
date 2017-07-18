@@ -5,10 +5,11 @@ var global = require('./global');
 
 var text = 'var config = {' +
     'runPort: ' + config.runPort + ',\n' +
-    'availableSubjectList: [' + Object.keys(config.subjectFullName) + '],\n' +
-    'availableSetList: [' + config.availableSetList + '],\n' +
-    'availableSubsetList: [' + config.availableSubsetList + '],\n' +
-    'availableSubscriptList: [' + config.availableSubscriptList + ']\n' +
+    'availableSubjectList: ' + JSON.stringify(Object.keys(config.subjectFullName)) + ',\n' +
+    'availableLevelList:' + JSON.stringify(config.availableLevelList) + ',\n' +
+    'availableSetList: ' + JSON.stringify(config.availableSetList) + ',\n' +
+    'availableSubsetList: ' + JSON.stringify(config.availableSubsetList) + ',\n' +
+    'availableSubscriptList: ' + JSON.stringify(config.availableSubscriptList) + '\n' +
     '}';
 
 fs.writeFile('public/js/configPath.js', text);
