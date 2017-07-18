@@ -5,6 +5,7 @@ var global = require('./global');
 
 var text = 'var config = {' +
     'runPort: ' + config.runPort + ',\n' +
+    'path: "http://localhost:' + config.runPort + '",\n' +
     'availableSubjectList: ' + JSON.stringify(Object.keys(config.subjectFullName)) + ',\n' +
     'availableLevelList:' + JSON.stringify(config.availableLevelList) + ',\n' +
     'availableSetList: ' + JSON.stringify(config.availableSetList) + ',\n' +
