@@ -10,7 +10,9 @@ var text = 'var config = {' +
     'availableLevelList:' + JSON.stringify(config.availableLevelList) + ',\n' +
     'availableSetList: ' + JSON.stringify(config.availableSetList) + ',\n' +
     'availableSubsetList: ' + JSON.stringify(config.availableSubsetList) + ',\n' +
-    'availableSubscriptList: ' + JSON.stringify(config.availableSubscriptList) + '\n' +
+    'availableSubscriptList: ' + JSON.stringify(config.availableSubscriptList) + ',\n' +
+    'maxSetNo: ' + config.maxSetNo + ',\n' +
+    'maxSubscriptNo: ' + config.maxSubscriptNo + '\n' +
     '}';
 
 fs.writeFile('public/js/configPath.js', text);

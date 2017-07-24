@@ -73,7 +73,7 @@ function getSubscriptNo() {
 function getMainRev() {
     var mainRevOption = document.getElementById('mainrev');
     for (let i = 0; i < 9; i++) {
-        mainRevOption.innerHTML += '<option value="' + (i+1) + '">' + (i+1) + '</option>';
+        mainRevOption.innerHTML += '<option value="' + (i + 1) + '">' + (i + 1) + '</option>';
     }
 }
 
@@ -82,4 +82,43 @@ function getSubRev() {
     for (let i = 0; i < 10; i++) {
         subRevOption.innerHTML += '<option value="' + i + '">' + i + '</option>';
     }
+}
+
+var sheetCode = [];
+
+for (var subject of config.availableSubjectList) {
+    for (var level of config.availableLevelList) {
+        for (var set of config.availableSetList) {
+            for (var subset of config.availableSubsetList) {
+                for (let i = 0; i < config.maxSetNo; i++) {
+                    var setno = String(i + 1);
+                    if (setno.length === 1) setno = '0' + setno;
+                    for (var subscript of config.availableSubscriptList) {
+                        var sheetset = subject + level + '-' + set + subset + setno + subscript;
+                        sheetCode.push(sheetset);
+                    }
+                }
+            }
+        }
+    }
+}
+function getSubjectCode() {
+
+    var numbers = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: sheetCode
+    });
+
+    // initialize the bloodhound suggestion engine
+    numbers.initialize();
+
+    $("#textbox").typeahead({
+        items: 8,
+        source: numbers.ttAdapter()
+    });
+
+    // $('#textbox').typeahead({
+    //     source: sheetCode
+    // });
 }
