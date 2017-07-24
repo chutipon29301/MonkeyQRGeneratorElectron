@@ -102,23 +102,3 @@ for (var subject of config.availableSubjectList) {
         }
     }
 }
-function getSubjectCode() {
-
-    var numbers = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: sheetCode
-    });
-
-    // initialize the bloodhound suggestion engine
-    numbers.initialize();
-
-    $("#textbox").typeahead({
-        items: 8,
-        source: numbers.ttAdapter()
-    });
-
-    // $('#textbox').typeahead({
-    //     source: sheetCode
-    // });
-}

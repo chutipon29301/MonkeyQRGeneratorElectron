@@ -6,5 +6,6 @@ availableSetList: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","
 availableSubsetList: ["A","B","E","I","P","T"],
 availableSubscriptList: ["a","b","c","r"],
 maxSetNo: 20,
-maxSubscriptNo: 20
+maxSubscriptNo: 20,
+availableSheetSet: []
 }
