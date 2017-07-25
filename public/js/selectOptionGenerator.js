@@ -1,6 +1,5 @@
 function getOption() {
     getSubject();
-    getLevel();
     getSet();
     getSubset();
     getSetNo();
@@ -13,39 +12,33 @@ function getOption() {
 function getSubject() {
     var subjectOption = document.getElementById('subject');
     subjectOption.innerHTML = '<option value="none">Subject</option>';
-    config.availableSubjectList.forEach(function (element) {
-        subjectOption.innerHTML += '<option value="' + element + '">' + element + '</option>';
-    }, this);
-}
-
-function getLevel() {
-    var levelOption = document.getElementById('level');
-    levelOption.innerHTML = '<option value="none">Level</option>';
-    config.availableLevelList.forEach(function (element) {
-        levelOption.innerHTML += '<option value="' + element + '">' + element + '</option>';
-    }, this);
+    for (subject of config.availableSubjectList) {
+        for (level of config.availableLevelList) {
+            subjectOption.innerHTML += '<option value="' + subject + level + '">' + subject + level + '</option>';
+        }
+    }
 }
 
 function getSet() {
     var setOption = document.getElementById('set');
     setOption.innerHTML = '<option value="none">Set</option>';
-    config.availableSetList.forEach(function (element) {
-        setOption.innerHTML += '<option value="' + element + '">' + element + '</option>';
-    }, this);
+    for (set of config.availableSetList) {
+        setOption.innerHTML += '<option value="' + set + '">' + set + '</option>';
+    }
 }
 
 function getSubset() {
     var subsetOption = document.getElementById('subset');
     subsetOption.innerHTML = '<option value="none">Subset</option>';
-    config.availableSubsetList.forEach(function (element) {
-        subsetOption.innerHTML += '<option value="' + element + '">' + element + '</option>';
-    }, this);
+    for (subset of config.availableSubsetList) {
+        subsetOption.innerHTML += '<option value="' + subset + '">' + subset + '</option>';
+    }
 }
 
 function getSetNo() {
     var setNoOption = document.getElementById('setno');
     setNoOption.innerHTML = '<option value="none">SetNo</option>';
-    for (let i = 0; i < 99; i++) {
+    for (let i = 0; i < config.maxSetNo; i++) {
         var temp = String(i + 1);
         if (temp.length === 1) temp = '0' + temp;
         setNoOption.innerHTML += '<option value="' + temp + '">' + temp + '</option>';
@@ -55,15 +48,15 @@ function getSetNo() {
 function getSubscript() {
     var subscriptOption = document.getElementById('subscript');
     subscriptOption.innerHTML = '<option value="none">None</option>';
-    config.availableSubscriptList.forEach(function (element) {
-        subscriptOption.innerHTML += '<option value="' + element + '">' + element + '</option>';
-    }, this);
+    for (subscript of config.availableSubscriptList) {
+        subscriptOption.innerHTML += '<option value="' + subscript + '">' + subscript + '</option>';
+    }
 }
 
 function getSubscriptNo() {
     var subscriptNoOption = document.getElementById('subscriptno');
     subscriptNoOption.innerHTML = '<option value="none">None</option>';
-    for (let i = 0; i < 99; i++) {
+    for (let i = 0; i < config.maxSubscriptNo; i++) {
         var temp = String(i + 1);
         if (temp.length === 1) temp = '0' + temp;
         subscriptNoOption.innerHTML += '<option value="' + temp + '">' + temp + '</option>';
@@ -81,24 +74,5 @@ function getSubRev() {
     var subRevOption = document.getElementById('subrev');
     for (let i = 0; i < 10; i++) {
         subRevOption.innerHTML += '<option value="' + i + '">' + i + '</option>';
-    }
-}
-
-var sheetCode = [];
-
-for (var subject of config.availableSubjectList) {
-    for (var level of config.availableLevelList) {
-        for (var set of config.availableSetList) {
-            for (var subset of config.availableSubsetList) {
-                for (let i = 0; i < config.maxSetNo; i++) {
-                    var setno = String(i + 1);
-                    if (setno.length === 1) setno = '0' + setno;
-                    for (var subscript of config.availableSubscriptList) {
-                        var sheetset = subject + level + '-' + set + subset + setno + subscript;
-                        sheetCode.push(sheetset);
-                    }
-                }
-            }
-        }
     }
 }
