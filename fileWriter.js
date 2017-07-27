@@ -12,7 +12,8 @@ var text = 'var config = {' +
     'availableSubsetList: ' + JSON.stringify(config.availableSubsetList) + ',\n' +
     'availableSubscriptList: ' + JSON.stringify(config.availableSubscriptList) + ',\n' +
     'maxSetNo: ' + config.maxSetNo + ',\n' +
-    'maxSubscriptNo: ' + config.maxSubscriptNo + '\n' +
+    'maxSubscriptNo: ' + config.maxSubscriptNo + ',\n' +
+    'tutorName: ' + JSON.stringify(config.tutorName) + '\n' +    
     '}';
 
 fs.writeFile('public/js/configPath.js', text);

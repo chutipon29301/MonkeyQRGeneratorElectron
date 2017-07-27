@@ -1,11 +1,11 @@
 var bodyParser = require('body-parser');
 var chalk = require('chalk');
 var global = require('./global');
-var config = require('./config')
+var config = require('./config');
 
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 module.exports = function (app) {
     app.use(bodyParser.json());
@@ -19,7 +19,6 @@ module.exports = function (app) {
     function decodeCourseName(courseName) {
         var courseNameComponent = {};
         courseNameComponent.fatalError = null;
-        var subject, level, set, subset, setNo, subscript, subscriptNo, mainRev, subRev;
 
         var errorLog = (err) => {
             global.error(courseNameComponent.fatalError = err);

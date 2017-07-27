@@ -18,6 +18,7 @@ function createWindow() {
     require('./fileWriter.js');
     require('./courseDecoder.js')(appExpress);
     require('./rest.js')(appExpress);
+    require('./qrgenerator.js')(appExpress);
     // Create the browser window.
     win = new BrowserWindow({ width: 800, height: 600 });
 

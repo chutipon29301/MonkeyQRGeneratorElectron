@@ -41,7 +41,75 @@
     <br>
 
     <div style="display: block; text-align: center">
-        <button class="btn btn-primary col-3">Generate</button>
+        <button class="btn btn-primary col-3" onclick="generateBtnClicked()">Generate</button>
     </div>
 
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" style="display: none" id="selectFolder" onchange="getSelectedPath()" webkitdirectory />
+
+    <script>
+        function generateBtnClicked() {
+
+            document.getElementById('selectFolder').click();
+        }
+
+        function getSelectedPath() {
+            var fullName = '';
+            var isValid = true;
+
+            var subject = document.getElementById('subject');
+            fullName += subject.options[subject.selectedIndex].value;
+            fullName += '-';
+
+            var set = document.getElementById('set');
+            fullName += set.options[set.selectedIndex].value;
+
+            var subset = document.getElementById('subset');
+            fullName += subset.options[subset.selectedIndex].value;
+
+            var setno = document.getElementById('setno');
+            fullName += setno.options[setno.selectedIndex].value;
+
+            var subscript = document.getElementById('subscript');
+            if (subscript.options[subscript.selectedIndex].value === 'none') {
+                fullName += subscript.options[subscript.selectedIndex].value;
+            }
+
+            var subscriptno = document.getElementById('subscriptno');
+            if(subscriptno.options[subscriptno.selectedIndex].value === 'none'){
+                fullName += subscriptno.options[subscriptno.selectedIndex].value;
+            }
+            fullName += '(REV'
+
+            var mainrev = document.getElementById('mainrev');
+            fullName += mainrev.options[mainrev.selectedIndex].value;
+            fullName += '_'
+
+            var subrev = document.getElementById('subrev');
+            fullName += subrev.options[subrev.selectedIndex].value;
+            fullName += ')';
+
+            $('#myModal').modal('show')
+            console.log(fullName);
+            console.log(document.getElementById('selectFolder').files[0].path);
+        }
+    </script>
 </body>
