@@ -29,20 +29,18 @@ module.exports = function (app) {
         };
 
         var dir;
-        if (config.debugMode) {
+        if (config.debugMode && !config.inNetwork) {
             dir = config.debugModeQRSavePath + '/QROUT';
         } else {
             dir = ((platform.process === 'darwin') ? config.darwinFilePath : config.win32FilePath) + req.body.tutorName + '/QROUT';
         }
-
-        
 
         fs.ensureDir(dir)
             .then(() => {
                 console.log('success!')
                 rp(options)
                     .then(function (parsedBody) {
-                        qrcode.toFile(dir + '/'+ req.body.courseName +'.png', parsedBody, {
+                        qrcode.toFile(dir + '/' + req.body.courseName + '.png', parsedBody, {
                             color: {
                                 dark: '#000',
                                 light: '#FFF'

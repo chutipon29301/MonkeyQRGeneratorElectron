@@ -1,5 +1,6 @@
 module.exports = {
     debugMode: true,
+    inNetwork: true,
     runPort: 4000,
     subjectFullName: {
         'M': 'MATH',
