@@ -7,5 +7,5 @@ availableSubsetList: ["A","B","E","I","P","T"],
 availableSubscriptList: ["a","b","c","r"],
 maxSetNo: 20,
 maxSubscriptNo: 20,
-tutorName: ["AIM","ANN","AOM","ATOM","BAM","BB","BENG","BG","BK","BOOK","CHIANG","CHOTE","FIRST& SP","GAG","GG","GWOW","JUI","KRU MEL","KUL","LOOKPAT","LOUIS","NATSU","NON","NON(PHUDIT)","NUT","PAAN","PELE","PEPE","PLOY","PRE","PUPU","SAIPARN","TAN","TAO","TEN","THIRD"]
+tutorName: [".DS_Store",".TemporaryItems",".apdisk","0.MANUAL","1.MEETING MEMO","2.QROUT","AIM","ANN","AOM","ATOM","BAM","BB","BENG","BG","BK","BOOK","CHIANG","CHOTE","Cr60Q3_studentData","FIRST& SP","GAG","GG","GWOW","JUI","KRU MEL","KUL","LOOKPAT","LOUIS","NATSU","NON","NON(PHUDIT)","NUT","PAAN","PELE","PEPE","PLOY","PRE","PUPU","SAIPARN","TAN","TAO","TEN","THIRD"]
 }

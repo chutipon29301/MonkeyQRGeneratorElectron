@@ -7,6 +7,7 @@ function getOption() {
     getSubscriptNo();
     getMainRev();
     getSubRev();
+    getTutor();
 }
 
 function getSubject() {
@@ -74,5 +75,13 @@ function getSubRev() {
     var subRevOption = document.getElementById('subrev');
     for (let i = 0; i < 10; i++) {
         subRevOption.innerHTML += '<option value="' + i + '">' + i + '</option>';
+    }
+}
+
+function getTutor(){
+    var tutorOption = document.getElementById('tutor');
+    tutorOption.innerHTML = '<option value="none">Select Tutor</option>';
+    for (name of config.tutorName) {
+        tutorOption.innerHTML += '<option value="' + name + '">' + name + '</option>';
     }
 }
