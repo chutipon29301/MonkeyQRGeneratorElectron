@@ -19,5 +19,6 @@ module.exports = {
         'FIRST& SP', 'GAG', 'GG', 'GWOW', 'JUI', 'KRU MEL', 'KUL', 'LOOKPAT', 'LOUIS', 'NATSU', 'NON', 'NON(PHUDIT)',
         'NUT', 'PAAN', 'PELE', 'PEPE', 'PLOY', 'PRE', 'PUPU', 'SAIPARN', 'TAN', 'TAO', 'TEN', 'THIRD'],
     darwinFilePath: '/Volumes/TUTORFILES/',
-    win32FilePath: '192.168.1.150/TUTORFILES/'
+    win32FilePath: '192.168.1.150/TUTORFILES/',
+    debugModeQRSavePath: '/Users/admin/Documents/TempQROut/'
 }
