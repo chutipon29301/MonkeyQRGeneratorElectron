@@ -3,6 +3,9 @@ var chalk = require('chalk');
 var config = require('./config');
 var global = require('./global');
 
+var fileList = fs.readdirSync(config.darwinFilePath);
+global.log(fileList);
+
 var text = 'var config = {' +
     'runPort: ' + config.runPort + ',\n' +
     'path: "http://localhost:' + config.runPort + '",\n' +
@@ -13,7 +16,7 @@ var text = 'var config = {' +
     'availableSubscriptList: ' + JSON.stringify(config.availableSubscriptList) + ',\n' +
     'maxSetNo: ' + config.maxSetNo + ',\n' +
     'maxSubscriptNo: ' + config.maxSubscriptNo + ',\n' +
-    'tutorName: ' + JSON.stringify(config.tutorName) + '\n' +    
+    'tutorName: ' + JSON.stringify(fileList) + '\n' +    
     '}';
 
 fs.writeFile('public/js/configPath.js', text);
