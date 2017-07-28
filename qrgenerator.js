@@ -28,36 +28,52 @@ module.exports = function (app) {
             json: true
         };
 
-        var dir = ((platform.process === 'darwin') ? config.darwinFilePath : config.win32FilePath) + req.body.tutorName + '/QROUT/';
+        var dir;
+        if (config.debugMode) {
+            dir = config.debugModeQRSavePath + '/QROUT';
+        } else {
+            dir = ((platform.process === 'darwin') ? config.darwinFilePath : config.win32FilePath) + req.body.tutorName + '/QROUT';
+        }
 
-        rp(options)
-            .then(function (parsedBody) {
-                qrcode.toFile('/Volumes/TUTORFILES/NON/test.png', parsedBody, {
-                    color: {
-                        dark: '#000',
-                        light: '#FFF'
-                    }
-                }, function (err) {
-                    if (err) {
-                        isErr = true;
-                        // return err;
-                    }
-                    global.green('[POST Request] "/createQRCode"\tFile has beed saved');
-                });
+        
+
+        fs.ensureDir(dir)
+            .then(() => {
+                console.log('success!')
+                rp(options)
+                    .then(function (parsedBody) {
+                        qrcode.toFile(dir + '/'+ req.body.courseName +'.png', parsedBody, {
+                            color: {
+                                dark: '#000',
+                                light: '#FFF'
+                            }
+                        }, function (err) {
+                            if (err) {
+                                isErr = true;
+                                // return err;
+                            }
+                            global.green('[POST Request] "/createQRCode"\tFile has beed saved');
+                        });
+                    })
+                    .catch(function (err) {
+                        global.red(err);
+                        if (err) {
+                            isErr = true;
+                            // return err;
+                        }
+                    })
+                    .finally(function () {
+                        if (!isErr) {
+                            return res.sendStatus(200);
+                        } else {
+                            return res.sendStatus(400);
+                        }
+                    });
             })
-            .catch(function (err) {
-                global.red(err);
-                if (err) {
-                    isErr = true;
-                    // return err;
-                }
-            })
-            .finally(function () {
-                if (!isErr) {
-                    return res.sendStatus(200);
-                } else {
-                    return res.sendStatus(400);
-                }
+            .catch(err => {
+                console.error(err)
             });
+
+
     });
 }
