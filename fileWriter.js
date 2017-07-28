@@ -4,9 +4,6 @@ var config = require('./config');
 var global = require('./global');
 
 var fileList = fs.readdirSync(config.darwinFilePath);
-global.log(fileList.filter(fileName => {
-    return !(fileName.charAt(0) === '.' || isNumeric(fileName.charAt(0)));
-}));
 
 var text = 'var config = {' +
     'runPort: ' + config.runPort + ',\n' +
