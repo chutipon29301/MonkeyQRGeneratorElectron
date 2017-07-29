@@ -19,59 +19,131 @@ module.exports = function (app) {
 
         if (req.body.courseName === null || req.body.tutorName === null) return res.status(400).send('Bad Request');
 
-        var options = {
-            method: 'POST',
-            uri: 'http://localhost:' + config.runPort + '/keyStudentPath',
-            body: {
-                courseName: req.body.courseName
-            },
-            json: true
-        };
-
         var dir;
         if (config.debugMode && !config.inNetwork) {
             dir = config.debugModeQRSavePath + '/QROUT';
         } else {
-            dir = ((platform.process === 'darwin') ? config.darwinFilePath : config.win32FilePath) + req.body.tutorName + '/QROUT';
+            dir = ((process.platform === 'darwin') ? config.darwinFilePath : config.win32FilePath) + req.body.tutorName + '/QROUT';
         }
 
         fs.ensureDir(dir)
             .then(() => {
-                console.log('success!')
-                rp(options)
-                    .then(function (parsedBody) {
-                        qrcode.toFile(dir + '/' + req.body.courseName + '.png', parsedBody, {
+                rp({
+                    method: 'POST',
+                    uri: 'http://localhost:' + config.runPort + '/keyStudentPath',
+                    body: {
+                        courseName: req.body.courseName
+                    },
+                    json: true
+                }).then(parsedBody => {
+                    qrcode.toFile(dir + '/' + req.body.courseName.substring(0, req.body.courseName.indexOf('('))
+                        + 'HOTKEY' + req.body.courseName.substring(req.body.courseName.indexOf('(')) + '.png', parsedBody, {
                             color: {
                                 dark: '#000',
                                 light: '#FFF'
                             }
-                        }, function (err) {
-                            if (err) {
-                                isErr = true;
-                                // return err;
-                            }
-                            global.green('[POST Request] "/createQRCode"\tFile has beed saved');
+                        }, err => {
+                            if (err) isErr = true;
+                            global.green('[POST Request] "/createQRCode"\tHOTKEY has beed saved');
                         });
-                    })
-                    .catch(function (err) {
-                        global.red(err);
-                        if (err) {
-                            isErr = true;
-                            // return err;
+                }).catch(err => {
+                    global.red(err);
+                    if (err) isErr = true;
+                }).finally(_ => {
+                    if (!isErr) {
+                        return res.sendStatus(200);
+                    } else {
+                        return res.sendStatus(400);
+                    }
+                });
+
+                rp({
+                    method: 'POST',
+                    uri: 'http://localhost:' + config.runPort + '/skillkeyPath',
+                    body: {
+                        courseName: req.body.courseName
+                    },
+                    json: true
+                }).then(parsedBody => {
+                    qrcode.toFile(dir + '/' + req.body.courseName.substring(0, req.body.courseName.indexOf('('))
+                        + 'HOTKEY' + req.body.courseName.substring(req.body.courseName.indexOf('(')) + '.png', parsedBody, {
+                            color: {
+                                dark: '#000',
+                                light: '#FFF'
+                            }
+                        }, err => {
+                            if (err) isErr = true;
+                            global.green('[POST Request] "/createQRCode"\tSKILLKEY has beed saved');
+                        });
+                }).catch(err => {
+                    global.red(err);
+                    if (err) isErr = true;
+                }).finally(_ => {
+                    if (!isErr) {
+                        return res.sendStatus(200);
+                    } else {
+                        return res.sendStatus(400);
+                    }
+                });
+
+                rp({
+                    method: 'POST',
+                    uri: 'http://localhost:' + config.runPort + '/hwkeyPath',
+                    body: {
+                        courseName: req.body.courseName
+                    },
+                    json: true
+                }).then(parsedBody => {
+                    qrcode.toFile(dir + '/' + req.body.courseName + '.png', parsedBody, {
+                        color: {
+                            dark: '#000',
+                            light: '#FFF'
                         }
-                    })
-                    .finally(function () {
-                        if (!isErr) {
-                            return res.sendStatus(200);
-                        } else {
-                            return res.sendStatus(400);
-                        }
+                    }, err => {
+                        if (err) isErr = true;
+                        global.green('[POST Request] "/createQRCode"\tHWKEY has beed saved');
                     });
+                }).catch(err => {
+                    global.red(err);
+                    if (err) isErr = true;
+                }).finally(_ => {
+                    if (!isErr) {
+                        return res.sendStatus(200);
+                    } else {
+                        return res.sendStatus(400);
+                    }
+                });
+
+                rp({
+                    method: 'POST',
+                    uri: 'http://localhost:' + config.runPort + '/testkeyPath',
+                    body: {
+                        courseName: req.body.courseName
+                    },
+                    json: true
+                }).then(parsedBody => {
+                    qrcode.toFile(dir + '/' + req.body.courseName + '.png', parsedBody, {
+                        color: {
+                            dark: '#000',
+                            light: '#FFF'
+                        }
+                    }, err => {
+                        if (err) isErr = true;
+                        global.green('[POST Request] "/createQRCode"\tTESTKEY has beed saved');
+                    });
+                }).catch(err => {
+                    global.red(err);
+                    if (err) isErr = true;
+                }).finally(_ => {
+                    if (!isErr) {
+                        return res.sendStatus(200);
+                    } else {
+                        return res.sendStatus(400);
+                    }
+                });
             })
             .catch(err => {
                 console.error(err)
             });
-
-
     });
 }
