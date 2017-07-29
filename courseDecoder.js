@@ -159,8 +159,26 @@ module.exports = function (app) {
         return courseNameComponent;
     }
 
-    app.post('/keyQRCodePath', function (req, res) {
-        global.cyan('[POST Request] "/keyQRCodePath"\tbody => ');
+    // app.post('/keyQRCodePath', function (req, res) {
+    //     global.cyan('[POST Request] "/keyQRCodePath"\tbody => ');
+    //     global.log(req.body);
+
+    //     if (req.body.courseName === null) return res.status(400).send('Bad Request');
+
+    //     var courseName = decodeCourseName(req.body.courseName);
+
+    //     if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
+
+    //     res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
+    //         + '/' + courseName.subject + courseName.level + '-' + courseName.set
+    //         + '/' + courseName.subject + courseName.level + '-' + courseName.set + '(REV' + courseName.mainRev + ')'
+    //         + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+    //         + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+    //         + courseName.subscript + courseName.subscriptNo + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+    // });
+
+    app.post('/hotkeyPath', function (req, res) {
+        global.cyan('[POST Request] "/hotKeyPath"\tbody => ');
         global.log(req.body);
 
         if (req.body.courseName === null) return res.status(400).send('Bad Request');
@@ -169,12 +187,66 @@ module.exports = function (app) {
 
         if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
 
-        res.status(200).send('//monkeycloud/' + config.subjectFullName[courseName.subject]
+        res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
             + '/' + courseName.subject + courseName.level + '-' + courseName.set
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + '(REV' + courseName.mainRev + ')'
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
-            + courseName.subscript + courseName.subscriptNo + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+            + courseName.subscript + courseName.subscriptNo + 'HOTKEY' + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+    });
+
+    app.post('/skillkeyPath', function (req, res) {
+        global.cyan('[POST Request] "/skillKeyPath"\tbody => ');
+        global.log(req.body);
+
+        if (req.body.courseName === null) return res.status(400).send('Bad Request');
+
+        var courseName = decodeCourseName(req.body.courseName);
+
+        if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
+
+        res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + '(REV' + courseName.mainRev + ')'
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + courseName.subscript + courseName.subscriptNo + 'SKILLKEY' + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+    });
+
+    app.post('/hwkeyPath', function (req, res) {
+        global.cyan('[POST Request] "/hwKeyPath"\tbody => ');
+        global.log(req.body);
+
+        if (req.body.courseName === null) return res.status(400).send('Bad Request');
+
+        var courseName = decodeCourseName(req.body.courseName);
+
+        if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
+
+        res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + '(REV' + courseName.mainRev + ')'
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + courseName.subscript + courseName.subscriptNo + 'HWKEY' + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+    });
+
+    app.post('/testkeyPath', function (req, res) {
+        global.cyan('[POST Request] "/testKeyPath"\tbody => ');
+        global.log(req.body);
+
+        if (req.body.courseName === null) return res.status(400).send('Bad Request');
+
+        var courseName = decodeCourseName(req.body.courseName);
+
+        if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
+
+        res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + '(REV' + courseName.mainRev + ')'
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
+            + courseName.subscript + courseName.subscriptNo + 'TESTKEY' + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
     });
 
     app.post('/keyStudentPath', function (req, res) {
@@ -187,7 +259,7 @@ module.exports = function (app) {
 
         if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
 
-        res.status(200).send('//monkeycloud/' + config.subjectFullName[courseName.subject]
+        res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
             + '/' + courseName.subject + courseName.level + '-' + courseName.set
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
