@@ -177,24 +177,6 @@ module.exports = function (app) {
     //         + courseName.subscript + courseName.subscriptNo + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
     // });
 
-    app.post('/hotkeyPath', function (req, res) {
-        global.cyan('[POST Request] "/hotKeyPath"\tbody => ');
-        global.log(req.body);
-
-        if (req.body.courseName === null) return res.status(400).send('Bad Request');
-
-        var courseName = decodeCourseName(req.body.courseName);
-
-        if (courseName.fatalError !== null) return res.status(400).send('Bad Course name');
-
-        res.status(200).send('file://monkeycloud/' + config.subjectFullName[courseName.subject]
-            + '/' + courseName.subject + courseName.level + '-' + courseName.set
-            + '/' + courseName.subject + courseName.level + '-' + courseName.set + '(REV' + courseName.mainRev + ')'
-            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
-            + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
-            + courseName.subscript + courseName.subscriptNo + 'HOTKEY' + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
-    });
-
     app.post('/skillkeyPath', function (req, res) {
         global.cyan('[POST Request] "/skillKeyPath"\tbody => ');
         global.log(req.body);
@@ -263,6 +245,6 @@ module.exports = function (app) {
             + '/' + courseName.subject + courseName.level + '-' + courseName.set
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
             + '/' + courseName.subject + courseName.level + '-' + courseName.set + courseName.subset + courseName.setNo
-            + courseName.subscript + courseName.subscriptNo + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
+            + courseName.subscript + courseName.subscriptNo + 'HOTKEY' + '(REV' + courseName.mainRev + '_' + courseName.subRev + ').pdf');
     });
 }
